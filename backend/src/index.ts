@@ -28,16 +28,18 @@ app.get('/health', (req: Request, res: Response) => {
 
 app.use('/', require('./routes/router'));
 
-app.listen(port, () => {
-	console.log(`Listening on port ${port}`);
-})
-
-console.log('env:', process.env.NODE_ENV);
 if (process.env.NODE_ENV === 'production') {
     console.log('env is prod');
     app.use(express.static('frontend/build'));
     app.get('*', (req, res) => {
         console.log('req: ', req.url);
-        res.sendFile(path.resolve(__dirname, '..', 'frontend', 'build', 'index.html'));
+        res.sendFile(path.resolve(__dirname, '..', '..', 'frontend', 'build', 'index.html'));
     });
+
+} else {
+	app.listen(port, () => {
+		console.log(`Listening on port ${port}`);
+	})
 }
+
+export = app;

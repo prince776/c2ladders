@@ -1,8 +1,10 @@
 import { ProblemStatus } from "./types";
 
+const baseURL = process.env.NODE_ENV === 'production' ? 'https://c2ladders.azurewebsites.net' : "http://localhost:8080";
+
 export const constants = {
 	cfAPI: 'https://codeforces.com/api',
-	api: 'http://localhost:8080/api',
+	api: `${baseURL}/api`,
 	submissionFetchInterval: 30 * 1000,
 };
 
