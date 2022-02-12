@@ -1,5 +1,5 @@
 {
-  "name": "c2ladder",
+  "name": "c2ladders",
   "version": "1.0.0",
   "description": "Recreation of the famous A2OJ Ladders with updated data from codeforces website.",
   "main": "index.js",

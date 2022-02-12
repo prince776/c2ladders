@@ -23,7 +23,7 @@ app.use(
     })
 );
 app.get('/health', (req: Request, res: Response) => {
-	res.send('C2Ladder backend working...');
+	res.send('C2Ladders backend working...');
 })
 
 app.use('/', require('./routes/router'));
