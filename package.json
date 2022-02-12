@@ -6,7 +6,7 @@
   "scripts": {
     "build": "NODE_ENV=production npm i && cd frontend && npm i && npm run build && cd ../backend && npm i && npm run build",
     "start": "node ./bin/www",
-	"test": "echo \"Error: no test specified\" && exit 1"
+	"test": "echo \"Error: no test specified\""
   },
   "repository": {
     "type": "git",
