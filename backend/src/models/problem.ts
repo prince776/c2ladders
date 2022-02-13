@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const problemSchema = new mongoose.Schema({
-	constestId: String,
+	contestId: String,
 	index: String,
 	name: String,
 	tags: [String],

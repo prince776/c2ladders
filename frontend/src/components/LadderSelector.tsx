@@ -18,7 +18,6 @@ function LadderSelector(props: LadderSelectorProps) {
 	let options: number[][] = [];
 	for (let i = props.startRating; i <= props.endRating; i += props.step) {
 		let st = i - props.step, ed = i;
-		if (i === props.startRating) st = 0;
 		options.push([st, ed]);
 	}
 	return (
@@ -33,7 +32,7 @@ function LadderSelector(props: LadderSelectorProps) {
 								endRating: option[1],
 							})} style={{
 								backgroundColor: (option[0] === props.ladderData.startRating && option[1] === props.ladderData.endRating) ? 'rgba(52, 98, 235, 0.6)' : 'white',
-							}}> &lt;{option[1]}</button>
+							}}> {option[0]}</button>
 							)
 						})
 					}

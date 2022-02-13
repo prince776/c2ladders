@@ -16,7 +16,7 @@ function App() {
 	const [user, setUser] = useState<string>('');
 	const [userErr, setUserErr] = useState<string>('');
 	const [userData, setUserData] = useState<UserData>(null);
-	const [ladderData, setLadderData] = useState<LadderData>({ startRating: 0, endRating: 1300 });
+	const [ladderData, setLadderData] = useState<LadderData>({ startRating: 1200, endRating: 1300 });
 	const [problemStatusMap, setProblemStatusMap] = useState<ProblemStatusMap>({});
 	const [fetchIntervalID, setfetchIntervalID] = useState<NodeJS.Timer | null>(null);
 
