@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { LadderData, ProblemStatusMap, UserData } from './utils/types';
+import { LadderData, ProblemStatusMap, UserData, UserStats } from './utils/types';
 import httpClient from './utils/http';
 import { constants } from './utils/constants';
 
@@ -16,6 +16,7 @@ function App() {
 	const [user, setUser] = useState<string>('');
 	const [userErr, setUserErr] = useState<string>('');
 	const [userData, setUserData] = useState<UserData>(null);
+	const [userStats, setUserStats] = useState<UserStats>(null);
 	const [ladderData, setLadderData] = useState<LadderData>({ startRating: 1200, endRating: 1300 });
 	const [problemStatusMap, setProblemStatusMap] = useState<ProblemStatusMap>({});
 	const [fetchIntervalID, setfetchIntervalID] = useState<NodeJS.Timer | null>(null);
@@ -83,9 +84,9 @@ function App() {
 				</div>
 			</div>
 			{userErr && <div className='row justify-content-center m-1 text-danger'>{userErr}</div>}
-			<UserCard userData={userData} />
+			<UserCard userData={userData} userStats={userStats}/>
 			<LadderSelector startRating={900} endRating={3600} step={100} setLadderData={setLadderData} ladderData={ladderData}/>
-			<Ladder ladderData={ladderData} problemStatusMap={problemStatusMap} />
+			<Ladder ladderData={ladderData} problemStatusMap={problemStatusMap} setUserStats={setUserStats}/>
 		</div>
 	);
 }

@@ -1,10 +1,16 @@
 import { useEffect, useState } from "react";
 import { constants, problemStatusColor } from "../utils/constants";
 import httpClient from "../utils/http";
-import { LadderData, Problem, ProblemStatus, ProblemStatusMap } from "../utils/types";
+import { LadderData, Problem, ProblemStatus, ProblemStatusMap, UserStats } from "../utils/types";
 import { getProblemID, getProblemLink } from "../utils/utils";
 
-function Ladder(props: { ladderData: LadderData, problemStatusMap: ProblemStatusMap }) {
+interface LadderProps {
+	ladderData: LadderData,
+	problemStatusMap: ProblemStatusMap,
+	setUserStats: (stats: UserStats) => void,
+}
+
+function Ladder(props: LadderProps) {
 	const data = props.ladderData;
 	const [problems, setProblems] = useState<Problem[]>([]);
 
@@ -20,25 +26,37 @@ function Ladder(props: { ladderData: LadderData, problemStatusMap: ProblemStatus
 		return res.data;
 	}
 
-	useEffect(() => {
-		fetchProblems().then(res => {
-			res = res.map((element: any) => {
-				return { ...element, status: ProblemStatus.NONE };
-			});
-			setProblems(res)
-		});
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [props.ladderData]);
-
-	useEffect(() => {
-		const newProblems = problems.map((problem: Problem) => {
+	const updateProblemsWithStatus = (problems: Problem[]) => {
+		let solvedCount = 0;
+		const newProblems =  problems.map((problem: Problem) => {
 			const newStatus = props.problemStatusMap[getProblemID(problem)] || ProblemStatus.NONE;
+			if (newStatus === ProblemStatus.AC) {
+				solvedCount++;
+			}
 			return {
 				...problem,
 				status: newStatus,
 			}
 		});
+		props.setUserStats({
+			solved: solvedCount,
+			unsolved: problems.length - solvedCount,
+		})
 		setProblems(newProblems);
+	}
+
+	useEffect(() => {
+		fetchProblems().then(res => {
+			res = res.map((element: any) => {
+				return { ...element, status: ProblemStatus.NONE };
+			});
+			updateProblemsWithStatus(res);
+		});
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [props.ladderData]);
+
+	useEffect(() => {
+		updateProblemsWithStatus(problems);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [props.problemStatusMap]);
 
@@ -62,7 +80,7 @@ function Ladder(props: { ladderData: LadderData, problemStatusMap: ProblemStatus
 					<tbody>
 						{
 							problems.map((problem, idx) => {
-								const status = props.problemStatusMap[getProblemID(problem)] || problem.status;
+								const status = problem.status;
 								return (
 										<tr key={idx} style={{
 											backgroundColor: problemStatusColor[status],

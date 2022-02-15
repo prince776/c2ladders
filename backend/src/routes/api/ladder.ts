@@ -77,7 +77,7 @@ router.get('/ladder', (req: Request, res: Response) => {
 				break;
 			}
 		}
-		sendSuccess(res, 'Ladder fetched', result);
+		sendSuccess(res, 'Ladder fetched', finalRes);
 		if (useCache) {
 			cache.set(`ladder:${startRating}:${endRating}`, finalRes);
 		}

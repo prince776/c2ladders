@@ -1,3 +1,9 @@
+interface UserStatsInterface {
+	solved:  number,
+	unsolved: number,
+}
+
+export type UserStats = UserStatsInterface | null;
 interface UserDataInterface {
 	handle: string,
 	image: string,

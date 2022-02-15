@@ -1,9 +1,8 @@
 import { cfRankColor } from "../utils/constants";
-import { UserData } from "../utils/types";
+import { UserData, UserStats } from "../utils/types";
 
-function UserCard(props: { userData: UserData }) {
-	const userData = props.userData;
-
+function UserCard(props: { userData: UserData, userStats: UserStats }) {
+	const { userData, userStats } = props;
 
 	if (!userData) return <div />;
 	return (
@@ -19,6 +18,7 @@ function UserCard(props: { userData: UserData }) {
 							color: cfRankColor[userData.rank],
 						}}>{userData.handle} ({userData.rank})</h5>
 						<h6>Rating: {userData.rating} (Max: {userData.maxRating})</h6>
+						{userStats && <h6>Solved: {userStats.solved} Unsolved: {userStats.unsolved}</h6>}
 					</div>
 				</div>
 		 	</div>
