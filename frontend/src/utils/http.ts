@@ -4,7 +4,7 @@ class HttpClient {
 	client: AxiosInstance;
 	constructor() {
 		this.client = axios.create({
-			timeout: 7000,
+			timeout: 15000,
 		});
 	}
 

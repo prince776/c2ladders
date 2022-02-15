@@ -28,6 +28,7 @@ function App() {
 				url: `${constants.cfAPI}/user.info`,
 				params: {
 					handles: user,
+					lang: 'en',
 				},
 			});
 			const userInfo = userDataRes.result[0];

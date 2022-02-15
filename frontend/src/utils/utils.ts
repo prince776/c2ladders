@@ -44,6 +44,7 @@ export const fetchUserSubmissions = async (user: UserData): Promise<any[]> => {
 		url: `${constants.cfAPI}/user.status`,
 		params: {
 			handle: user?.handle,
+			lang: 'en',
 		},
 	});
 	return response.result;
