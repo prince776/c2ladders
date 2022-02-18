@@ -95,7 +95,7 @@ function App() {
 			loadUserUsingHandle(handle);
 		
 		const rating = Number(searchParams.get("rating"));
-		if (!isNaN(rating) && rating%100 == 0 && 800 <= rating && rating <= 3500)
+		if (!isNaN(rating) && rating%100 === 0 && 800 <= rating && rating <= 3500)
 			setLadderData({
 				startRating: rating,
 				endRating: rating+100,
