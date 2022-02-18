@@ -25,8 +25,12 @@ function App() {
 	const [fetchIntervalID, setfetchIntervalID] = useState<NodeJS.Timer | null>(null);
 
 	const loadUser = async () => {
-		setSearchParams({ handle: user });
-		
+		const rating = searchParams.get("rating");
+		if (rating)
+			setSearchParams({ rating, handle: user });
+		else
+			setSearchParams({ handle: user });
+
 		try {
 			const userDataRes = await httpClient.request({
 				method: 'GET',
@@ -89,8 +93,25 @@ function App() {
 		const handle = searchParams.get("handle");
 		if (handle)
 			loadUserUsingHandle(handle);
+		
+		const rating = Number(searchParams.get("rating"));
+		if (!isNaN(rating) && rating%100 == 0 && 800 <= rating && rating <= 3500)
+			setLadderData({
+				startRating: rating,
+				endRating: rating+100,
+			});
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
+
+	useEffect(() => {
+		const handle = searchParams.get("handle");
+		if (handle)
+			setSearchParams({ handle, rating: ladderData.startRating.toString() });
+		else
+			setSearchParams({ rating: ladderData.startRating.toString() });
+		
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [ladderData]);
 
 	useEffect(() => {
 		if (!userData) return;
