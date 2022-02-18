@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useSearchParams } from "react-router-dom";
 
 import { LadderData, ProblemStatusMap, UserData, UserStats } from './utils/types';
 import httpClient from './utils/http';
@@ -13,6 +14,8 @@ import { assignNewStatus, fetchUserSubmissionsWithRetry, getProblemID } from './
 
 function App() {
 
+	const [searchParams, setSearchParams] = useSearchParams();
+
 	const [user, setUser] = useState<string>('');
 	const [userErr, setUserErr] = useState<string>('');
 	const [userData, setUserData] = useState<UserData>(null);
@@ -22,12 +25,38 @@ function App() {
 	const [fetchIntervalID, setfetchIntervalID] = useState<NodeJS.Timer | null>(null);
 
 	const loadUser = async () => {
+		setSearchParams({ handle: user });
+		
 		try {
 			const userDataRes = await httpClient.request({
 				method: 'GET',
 				url: `${constants.cfAPI}/user.info`,
 				params: {
 					handles: user,
+					lang: 'en',
+				},
+			});
+			const userInfo = userDataRes.result[0];
+			setUserData({
+				handle: userInfo.handle,
+				image: userInfo.avatar,
+				maxRating: userInfo.maxRating,
+				rating: userInfo.rating,
+				rank: userInfo.rank,
+			});
+			setUserErr('');
+		} catch (err: any) {
+			setUserErr(`Codeforces error: "${err.response.data.comment}"`);
+		}
+	}
+
+	const loadUserUsingHandle = async (handle: string) => {
+		try {
+			const userDataRes = await httpClient.request({
+				method: 'GET',
+				url: `${constants.cfAPI}/user.info`,
+				params: {
+					handles: handle,
 					lang: 'en',
 				},
 			});
@@ -55,6 +84,13 @@ function App() {
 		}
 		setProblemStatusMap(newMap);
 	}
+
+	useEffect(() => {
+		const handle = searchParams.get("handle");
+		if (handle)
+			loadUserUsingHandle(handle);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	useEffect(() => {
 		if (!userData) return;
