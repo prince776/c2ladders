@@ -16,7 +16,7 @@ function App() {
 
 	const [searchParams, setSearchParams] = useSearchParams();
 
-	const [user, setUser] = useState<string>('');
+	const [user, setUser] = useState<string>(searchParams.get("handle") || '');
 	const [userErr, setUserErr] = useState<string>('');
 	const [userData, setUserData] = useState<UserData>(null);
 	const [userStats, setUserStats] = useState<UserStats>(null);
@@ -54,30 +54,6 @@ function App() {
 		}
 	}
 
-	const loadUserUsingHandle = async (handle: string) => {
-		try {
-			const userDataRes = await httpClient.request({
-				method: 'GET',
-				url: `${constants.cfAPI}/user.info`,
-				params: {
-					handles: handle,
-					lang: 'en',
-				},
-			});
-			const userInfo = userDataRes.result[0];
-			setUserData({
-				handle: userInfo.handle,
-				image: userInfo.avatar,
-				maxRating: userInfo.maxRating,
-				rating: userInfo.rating,
-				rank: userInfo.rank,
-			});
-			setUserErr('');
-		} catch (err: any) {
-			setUserErr(`Codeforces error: "${err.response.data.comment}"`);
-		}
-	}
-
 	const updateProblemStatusMap = async (userData: UserData) => {
 		let newMap = {} as ProblemStatusMap;
 		const submissions = await fetchUserSubmissionsWithRetry(userData, 3);
@@ -90,9 +66,8 @@ function App() {
 	}
 
 	useEffect(() => {
-		const handle = searchParams.get("handle");
-		if (handle)
-			loadUserUsingHandle(handle);
+		if (user != '')
+			loadUser();
 		
 		const rating = Number(searchParams.get("rating"));
 		if (!isNaN(rating) && rating%100 === 0 && 800 <= rating && rating <= 3500)
