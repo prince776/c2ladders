@@ -40,4 +40,9 @@ export interface Problem {
 	status: ProblemStatus,
 }
 
+export enum Handle {
+	INDIVIDUAL = 'individual',
+	TEAM = 'team',
+}
+
 export type ProblemStatusMap = Record<string, ProblemStatus>;
