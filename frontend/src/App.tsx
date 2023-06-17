@@ -70,7 +70,7 @@ function App() {
 
 	return (
 		<div className='container-fluid'>
-			<Header heading='C2 LADDERS' />
+			<Header heading='ACD Ladders!' />
 
 			<div className="mb-3 row text-center justify-content-center">
 				<div className="col-auto">
