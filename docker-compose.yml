@@ -1,0 +1,20 @@
+version: "3.8"
+services: 
+  backend:
+    container_name: acd_backend
+    restart: unless-stopped
+    image: acd_backend_image
+    build:
+      dockerfile: Dockerfile
+    ports: 
+      - 8080:8080
+  frontend:
+    container_name: acd_frontend
+    restart: unless-stopped
+    image: acd_frontend_image
+    build: 
+      dockerfile: Dockerfile
+    ports: 
+      - 3000:3000
+    depends_on:
+      - backend

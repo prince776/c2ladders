@@ -12,7 +12,7 @@ const db = {
 	user: process.env.DB_USER,
 	pass: process.env.DB_PASS,
 };
-mongoose.connect(`mongodb+srv://${db.user}:${db.pass}@mongodb-cluster.5gkbu.mongodb.net/competitive-programming?retryWrites=true&w=majority`);
+mongoose.connect(`mongodb+srv://${db.user}:${db.pass}@cluster0.eowk9mo.mongodb.net/?retryWrites=true&w=majority`);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
