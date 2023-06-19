@@ -51,3 +51,43 @@ export const cfRankColor: Record<string, string> = {
 	'international grandmaster': '#FF3333',
 	'legendary grandmaster': '#AA0001',
 }
+
+export const cfQuesColor: Record<number, string> = {
+	800: '#CCCCCC',
+	900: '#CCCCCC',
+	1000: '#CCCCCC',
+	1100: '#CCCCCC',
+
+	1200: '#77FF78',
+	1300: '#77FF78',
+
+	1400: '#77DDBB',
+	1500: '#77DDBB',
+
+	1600: '#ABAAFF',
+	1700: '#ABAAFF',
+	1800: '#ABAAFF',
+
+	'1900': '#FF88FF',
+	'2000': '#FF88FF',
+	'2100': '#FF88FF',
+
+	'2200': '#FFCC88',
+
+	2300: '#FFBB55',
+
+	2400: '#FF7777',
+	2500: '#FF7777',
+
+	2600: '#FF3333',
+	2700: '#FF3333',
+	2800: '#FF3333',
+
+	2900: '#FF0000',
+	3000: '#FF0000',
+	3100: '#FF0000',
+	3200: '#FF0000',
+	3300: '#FF0000',
+	3400: '#FF0000',
+	3500: '#FF0000',
+}
