@@ -1,4 +1,7 @@
+import { useState, useEffect } from "react";
 import { LadderData } from "../utils/types";
+import { cfQuesColor } from "../utils/constants";
+
 
 interface LadderSelectorProps {
 	setLadderData: (data: LadderData) => void,
@@ -6,6 +9,8 @@ interface LadderSelectorProps {
 	startRating: number,
 	endRating: number,
 	step: number,
+	selected: number,
+	setSelected: (data: number) => void
 }
 
 /**
@@ -20,25 +25,75 @@ function LadderSelector(props: LadderSelectorProps) {
 		let st = i - props.step, ed = i;
 		options.push([st, ed]);
 	}
+
+	const [start, setStart] = useState(0)
+	const [end, setEnd] = useState(Math.min(12, options.length))
+
+	const [currOptions, setCurrOptions] = useState(options)
+
+
+	const nextOption = () => {
+		let newEnd = Math.min(end + 12, options.length)
+		setEnd(newEnd)
+		setStart(newEnd - 12)
+		setCurrOptions(options.slice(newEnd - 12, newEnd));
+
+	}
+
+	const prevOption = () => {
+		let newStart = Math.max(start - 12, 0)
+		setStart(newStart)
+		setEnd(newStart + 12)
+		setCurrOptions(options.slice(newStart, newStart + 12));
+	}
+
+	useEffect(() => {
+		setCurrOptions(options.slice(start, end))
+	}, [])
+
+	// const [selected, setSelected] = useState(1200)
+
+	let a = "text-white hover:bg-gray-900 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
+
+	let b = "bg-gray-900 outline-none ring-1 ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
+
+	const handleSubmit = (option: number[]) => {
+		props.setLadderData({
+			startRating: option[0],
+			endRating: option[1],
+		})
+		props.setSelected(option[0])
+	}
+
 	return (
-		<div>
-			<div className='row flex-row flex-nowrap mb-2 justify-content-center'>
-				<div className='col-12 col-md-10 col-lg-9 col-xl-8 text-center'>
-				{
-					options.map(option => {
-						return (
-							<button className="col-auto p-2" key={option[0]} onClick={() => props.setLadderData({
-								startRating: option[0],
-								endRating: option[1],
-							})} style={{
-								backgroundColor: (option[0] === props.ladderData.startRating && option[1] === props.ladderData.endRating) ? 'rgba(52, 98, 235, 0.6)' : 'white',
-							}}> {option[0]}</button>
-							)
-						})
-					}
-				</div>
-			</div>
+
+		<div className='flex flex-row '>
+			<button className="text-white hover:bg-gray-900 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
+				onClick={prevOption}
+			>
+				Prev
+			</button>
+
+			{
+				currOptions.map(option => {
+					return (
+
+						<button className={props.selected == option[0] ? b : a}
+							style={{
+								color: cfQuesColor[option[0]],
+							}}
+							key={option[0]} onClick={() => (handleSubmit(option))} > {option[0]}</button>
+					)
+				})
+			}
+
+			<button className="text-white hover:bg-gray-900 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
+				onClick={nextOption}
+			>
+				Next
+			</button>
 		</div>
+
 	)
 }
 
