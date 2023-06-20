@@ -11,10 +11,11 @@ import Ladder from './components/Ladder';
 import LadderSelector from './components/LadderSelector';
 import { assignNewStatus, fetchUserSubmissionsWithRetry, getProblemID } from './utils/utils';
 
+import { toast } from 'react-toastify';
+
 function App() {
 
 	const [user, setUser] = useState<string>('');
-	const [userErr, setUserErr] = useState<string>('');
 	const [userData, setUserData] = useState<UserData>(null);
 	const [userStats, setUserStats] = useState<UserStats>(null);
 	const [ladderData, setLadderData] = useState<LadderData>({ startRating: 1200, endRating: 1300 });
@@ -51,10 +52,10 @@ function App() {
 			})
 
 			setSelected(startR)
+			toast.success("CF Handle found 😊")
 
-			setUserErr('');
 		} catch (err: any) {
-			setUserErr(`Codeforces error: "${err.response.data.comment}"`);
+			toast.error("CF Handle not Found Try again")
 		}
 	}
 
@@ -131,7 +132,6 @@ function App() {
 					</div>
 
 				</div>
-				{userErr && <div className='row justify-content-center m-1 text-danger'>{userErr}</div>}
 				<UserCard userData={userData} userStats={userStats} />
 
 				<Ladder ladderData={ladderData} problemStatusMap={problemStatusMap} setUserStats={setUserStats} />
