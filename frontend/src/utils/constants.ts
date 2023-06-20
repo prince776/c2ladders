@@ -1,6 +1,6 @@
 import { ProblemStatus } from "./types";
 
-const baseURL = "http://localhost:8080";
+const baseURL = "http://acodedaily.com/";
 
 export const constants = {
 	cfAPI: 'https://codeforces.com/api',
