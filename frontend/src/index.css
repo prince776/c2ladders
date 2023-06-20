@@ -102,6 +102,6 @@
 .top-row {
   display: grid;
   grid-template-columns: 3fr 1fr;
-  padding: 0;
+  /* padding: 0; */
   margin-bottom: 20px;
 }
