@@ -2,3 +2,77 @@
 @tailwind components;
 @tailwind utilities;
 
+.bg-color {
+  background-color: #2b2c3e;
+}
+
+.bg-color-dark {
+  background-color: #151834;
+}
+
+.problem-table {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: #fff solid 2px;
+  border-radius: 25px;
+}
+
+.entire-table {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 15px;
+}
+
+.table-head {
+  background-color: #151834;
+  border-radius: 15px;
+}
+
+.table-head tr {
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr 1fr 1fr;
+  padding: 15px 10px;
+}
+
+.table-body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.table-row {
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr 1fr 1fr;
+  border-radius: 15px;
+  padding: 15px 10px;
+  /* background-color: aqua; */
+  width: 100%;
+}
+
+.bg-green {
+  /* background: linear-gradient(to left, #4ade80 12.4%, #2b2c3e 12.5%); */
+  color: #4ade80;
+}
+
+.search-bar {
+  display: flex;
+  background-color: #151834;
+  height: 40px;
+  border-radius: 25px;
+  padding: 0 10px;
+  box-shadow: 2px 2px 5px inset #1b1b1b;
+}
+
+.search-bar input {
+  outline: none;
+  background-color: transparent;
+}
+
+.top-row {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  padding: 0;
+  margin-bottom: 20px;
+}
