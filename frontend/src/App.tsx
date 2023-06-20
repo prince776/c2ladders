@@ -105,7 +105,7 @@ function App() {
       <div className="w-full p-10">
         <div className="top-row">
           <LadderSelector
-            showRating={12}
+            showRating={11}
             startRating={900}
             endRating={3600}
             step={100}

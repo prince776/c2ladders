@@ -7,7 +7,6 @@ function UserCard(props: { userData: UserData; userStats: UserStats }) {
   if (!userData) return <div />;
   return (
     <div className="profileRow w-full">
-      <img className="profileImage" src={userData.image}></img>
       <h5
         style={{
           color: cfRankColor[userData.rank],

@@ -19,7 +19,7 @@ interface LadderSelectorProps {
  * @returns
  */
 function LadderSelector(props: LadderSelectorProps) {
-  let showRating = props.showRating || 12;
+  let showRating = props.showRating || 11;
   let options: number[][] = [];
   for (let i = props.startRating; i <= props.endRating; i += props.step) {
     let st = i - props.step,
