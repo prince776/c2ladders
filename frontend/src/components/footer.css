@@ -1,0 +1,131 @@
+.footer {
+  background-color: #151834;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 70px;
+  padding: 10px 50px;
+}
+
+.footer .middle {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 100px;
+}
+
+.footer .middle a {
+  color: #fff;
+  position: relative;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 1/1;
+  z-index: 1;
+}
+
+.footer .middle a > * {
+  z-index: 2;
+}
+
+.footer .middle a::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform: skewY(1deg);
+  background-color: #fff;
+  z-index: -1;
+  top: 0%;
+  left: 0%;
+  transition: 0.2s;
+}
+
+.footer .middle a::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #2b2c3e;
+  transform: skewX(-1deg);
+  z-index: -1;
+  top: 0%;
+  left: 0%;
+}
+
+.footer .middle a:hover::before {
+  transform: skewY(1deg) scale(1.1);
+  background-color: #56d6ff;
+}
+
+.footer .middle a img {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+}
+
+.username {
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.name {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.top {
+  font-size: 26px;
+}
+
+.bottom {
+  font-size: 32px;
+  position: relative;
+  padding: 25px;
+  z-index: 2;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+
+.bottom span {
+  transform: translateY(10px);
+}
+
+.bottom img {
+  width: 200px;
+  object-fit: contain;
+}
+
+.bottom::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #151834;
+  transform: skewX(-5deg);
+  top: 0%;
+  left: 0%;
+  z-index: -1;
+}
+
+.bottom::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform: skewY(1deg);
+  background-color: #56d6ff;
+  top: 0%;
+  left: 0%;
+  transition: 0.2s;
+  z-index: -1;
+}

@@ -8,6 +8,7 @@ interface LadderSelectorProps {
   startRating: number;
   endRating: number;
   step: number;
+  showRating: number;
   selected: number;
   setSelected: (data: number) => void;
 }
@@ -18,6 +19,7 @@ interface LadderSelectorProps {
  * @returns
  */
 function LadderSelector(props: LadderSelectorProps) {
+  let showRating = props.showRating || 12;
   let options: number[][] = [];
   for (let i = props.startRating; i <= props.endRating; i += props.step) {
     let st = i - props.step,
@@ -26,22 +28,22 @@ function LadderSelector(props: LadderSelectorProps) {
   }
 
   const [start, setStart] = useState(0);
-  const [end, setEnd] = useState(Math.min(12, options.length));
+  const [end, setEnd] = useState(Math.min(showRating, options.length));
 
   const [currOptions, setCurrOptions] = useState(options);
 
   const nextOption = () => {
-    let newEnd = Math.min(end + 12, options.length);
+    let newEnd = Math.min(end + showRating, options.length);
     setEnd(newEnd);
-    setStart(newEnd - 12);
-    setCurrOptions(options.slice(newEnd - 12, newEnd));
+    setStart(newEnd - showRating);
+    setCurrOptions(options.slice(newEnd - showRating, newEnd));
   };
 
   const prevOption = () => {
-    let newStart = Math.max(start - 12, 0);
+    let newStart = Math.max(start - showRating, 0);
     setStart(newStart);
-    setEnd(newStart + 12);
-    setCurrOptions(options.slice(newStart, newStart + 12));
+    setEnd(newStart + showRating);
+    setCurrOptions(options.slice(newStart, newStart + showRating));
   };
 
   useEffect(() => {

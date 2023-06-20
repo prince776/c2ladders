@@ -19,6 +19,7 @@ import {
   fetchUserSubmissionsWithRetry,
   getProblemID,
 } from "./utils/utils";
+import Footer from "./components/Footer";
 
 import { toast } from "react-toastify";
 
@@ -104,6 +105,7 @@ function App() {
       <div className="w-full p-10">
         <div className="top-row">
           <LadderSelector
+            showRating={11}
             startRating={900}
             endRating={3600}
             step={100}
@@ -172,6 +174,8 @@ function App() {
           setUserStats={setUserStats}
         />
       </div>
+
+      <Footer />
     </div>
   );
 }
