@@ -21,7 +21,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.get("/health", (req: Request, res: Response) => {
-  res.send("C2Ladders backend working...");
+  res.send("ACDLadders backend working...");
 });
 
 app.use("/", require("./routes/router"));

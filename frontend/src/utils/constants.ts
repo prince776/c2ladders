@@ -1,6 +1,6 @@
 import { ProblemStatus } from "./types";
 
-const baseURL = process.env.NODE_ENV === 'production' ? 'https://c2-ladders.com' : "http://localhost:8080";
+const baseURL = "http://localhost:8080";
 
 export const constants = {
 	cfAPI: 'https://codeforces.com/api',
