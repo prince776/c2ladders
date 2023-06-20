@@ -15,6 +15,22 @@
   background: #56d6ff;
 }
 
+.profileImage {
+  background-color: #151834;
+  width: 75px;
+  height: 75px;
+  object-fit: contain;
+}
+
+.profileRow {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
 .bg-color {
   background-color: #2b2c3e;
 }

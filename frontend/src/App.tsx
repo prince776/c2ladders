@@ -105,7 +105,7 @@ function App() {
       <div className="w-full p-10">
         <div className="top-row">
           <LadderSelector
-            showRating={11}
+            showRating={12}
             startRating={900}
             endRating={3600}
             step={100}
@@ -129,12 +129,15 @@ function App() {
 				</div> */}
 
           {/* user iamge removed for while */}
-          {/* {
-						userData &&
-						<div className="pr-2">
-							<img className='min-h-10 min-w-10 rounded-full' src={userData.image} alt={userData.handle} />
-						</div>
-					} */}
+          {/* {userData && (
+            <div className="pr-2">
+              <img
+                className="min-h-10 min-w-10 rounded-full"
+                src={userData.image}
+                alt={userData.handle}
+              />
+            </div>
+          )} */}
 
           <div className="search-bar relative mx-auto w-auto">
             <input
