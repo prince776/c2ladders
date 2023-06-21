@@ -19,6 +19,7 @@ interface LadderSelectorProps {
  * @returns
  */
 function LadderSelector(props: LadderSelectorProps) {
+
   let showRating = props.showRating || 11;
   let options: number[][] = [];
   for (let i = props.startRating; i <= props.endRating; i += props.step) {
@@ -47,10 +48,11 @@ function LadderSelector(props: LadderSelectorProps) {
   };
 
   useEffect(() => {
+
     setCurrOptions(options.slice(start, end));
   }, []);
 
-  // const [selected, setSelected] = useState(1200)
+
 
   let a =
     "text-white hover:bg-gray-900 font-medium rounded-lg text-sm px-5 py-2.5 mr-2";

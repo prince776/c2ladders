@@ -104,6 +104,7 @@ function App() {
       <Header heading="ACD Ladders!" />
       <div className="w-full p-10">
         <div className="top-row sticky top-0 z-10 bg-[#2b2c3e] p-5">
+          
           <LadderSelector
             showRating={11}
             startRating={900}
@@ -114,30 +115,6 @@ function App() {
             selected={selected}
             setSelected={setSelected}
           />
-
-          {/* <div className="flex">
-					<div className="">
-						<input type="text" placeholder="Search CF Handle" className="form-control" id="inputPassword"
-							value={user} onChange={(e) => setUser(e.target.value)} onKeyDown={(e) => {
-								if (e.key === 'Enter')
-									loadUser();
-							}} />
-					</div>
-					<div className="">
-						<button className='btn btn-primary' onClick={loadUser}><i className="bi bi-search"></i> Search</button>
-					</div>
-				</div> */}
-
-          {/* user iamge removed for while */}
-          {/* {userData && (
-            <div className="pr-2">
-              <img
-                className="min-h-10 min-w-10 rounded-full"
-                src={userData.image}
-                alt={userData.handle}
-              />
-            </div>
-          )} */}
 
           <div className="search-bar relative mx-auto w-auto">
             <input

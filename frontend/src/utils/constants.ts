@@ -68,11 +68,11 @@ export const cfQuesColor: Record<number, string> = {
 	1700: '#ABAAFF',
 	1800: '#ABAAFF',
 
-	'1900': '#FF88FF',
-	'2000': '#FF88FF',
-	'2100': '#FF88FF',
+	1900: '#FF88FF',
+	2000: '#FF88FF',
 
-	'2200': '#FFCC88',
+	2100: '#FFCC88',
+	2200: '#FFCC88',
 
 	2300: '#FFBB55',
 
