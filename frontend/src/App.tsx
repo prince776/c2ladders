@@ -103,7 +103,7 @@ function App() {
     <div className="w-full bg-color">
       <Header heading="ACD Ladders!" />
       <div className="w-full p-10">
-        <div className="top-row">
+        <div className="top-row sticky top-0 z-10 bg-[#2b2c3e] p-5">
           <LadderSelector
             showRating={11}
             startRating={900}
