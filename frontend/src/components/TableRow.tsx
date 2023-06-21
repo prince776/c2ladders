@@ -1,7 +1,6 @@
 import { Problem } from "../utils/types";
 import { getProblemID, getProblemLink } from "../utils/utils";
-import { constants, problemStatusColor } from "../utils/constants";
-import { useState } from "react";
+
 
 const TableRow = (props: { data: Problem; status: string; index: number }) => {
   const { data, status, index } = props;
@@ -10,17 +9,15 @@ const TableRow = (props: { data: Problem; status: string; index: number }) => {
     window.open(getProblemLink(problem));
   };
 
-  console.log(status);
 
   return (
     <tr
-      className={`bg-color table-row ${
-        status == "AC"
+      className={`bg-color table-row ${status == "AC"
           ? "bg-green"
           : status == "TLE" || status == "WA" || status == "RE"
-          ? "bg-red"
-          : ""
-      }`}
+            ? "bg-red"
+            : ""
+        }`}
       onClick={() => handleClick(data)}
       role="button"
     >
@@ -45,26 +42,4 @@ const TableRow = (props: { data: Problem; status: string; index: number }) => {
 
 export default TableRow;
 
-{
-  /* 
 
-    <div className="w-full flex flex-row justify-between bg-gray-600">
-            <td className="px-6 py-4">
-                {index + 1}
-            </td>
-            <td className="px-6 py-4">
-                {data.name}
-            </td>
-            <td className="px-6 py-4">
-                {data.frequency}
-            </td>
-            <td className="px-6 py-4">
-                {data.rating}
-            </td>
-            <td className="px-6 py-4">
-                {status}
-            </td>
-        </div>
-
-*/
-}

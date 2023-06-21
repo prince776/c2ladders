@@ -68,10 +68,6 @@ function Ladder(props: LadderProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.problemStatusMap]);
 
-  // remove after
-  const handleClick = (problem: Problem) => {
-    window.open(getProblemLink(problem));
-  };
 
   return (
     <div className="w-full problem-table text-center">
@@ -90,16 +86,6 @@ function Ladder(props: LadderProps) {
             const status = problem.status;
             return (
               <TableRow key={idx} data={problem} status={status} index={idx} />
-
-              // <tr key={idx} style={{
-              // 	backgroundColor: problemStatusColor[status],
-              // }} onClick={() => handleClick(problem)} role="button">
-              // 	<td className="text-center">{idx + 1}</td>
-              // 	<td className="text-center">{problem.name}</td>
-              // 	<td className="text-center">{problem.frequency}</td>
-              // 	<td className="text-center">{problem.rating}</td>
-              // 	<td className="text-center">{status}</td>
-              // </tr>
             );
           })}
         </tbody>
