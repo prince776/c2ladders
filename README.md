@@ -1,45 +1,11 @@
-# C2 Ladders
-C2Ladders is rating wise list of Codeforces problems which were solved by many people who have had stable rating increase.
-It's a reconstruction of old a2oj Ladders with new and updated problemset.
+# ACD Ladders
+The website hosts those problems which have statistically been proven to help users increase their rating. In order to produce these problems the data of more than 45k active users (codeforces) was analysed. In order to know more about the script, feel free to check the code at https://github.com/i-pranav/scripts-for-ladders
 
-It's live at: https://c2-ladders.com/
+The website is live at https://ACodeDaily.com
 
-Script for creation of ladders is available here: https://github.com/prince776/scripts-yt/tree/master/ladder
+The website was forked but then had significant changes both in terms of backend and frontend, The frontend speaks for iself. On the backend we have shifted from the mongodb architecture to a complete json approach as the same set of calls were being made to mongodb. It didn't make any sense to query the db for the same queries. 
+Out of the available options i.e. cahching, storing everything locally. we decided to store everything locally due to multiple reasons, which is out of the scope of this discussion. 
 
-
-# How to build
-
-To build this, you have to worry about `backend/` and `frontend/` folders only, the files outside are mainly concerned with deployment on azure.
-I've also created a staging database which you can use while development.
-
-Credentials are open, please don't misuse (it has incomplete data):
-
-username = test
-
-password = 0XP0V69Lvhwu9wbo
-
-## Backend
-Inside `backend/` folder
-
-In `src/index.ts`:
-Change the `mongoose.connect` line to: (keep this change locally only)
-```
-mongoose.connect(`mongodb+srv://${db.user}:${db.pass}@cluster0.robkk.mongodb.net/test?retryWrites=true&w=majority`);
-```
-
-Then to build and run:
-
-```
-$ npm install
-$ DB_USER=test DB_PASS=0XP0V69Lvhwu9wbo npm run dev
-```
-
-
-## Frontend
-Inside `frontend/` folder
-
-To build and run:
-```
-$ npm install
-$ npm start
-```
+# how to build?
+There are 2 components backend and frontend. The frontend won't be able to populate the problems without support from backend. hence please deploy the backend first using npm. Thereafter deploy the frontend. 
+Thanks! 
