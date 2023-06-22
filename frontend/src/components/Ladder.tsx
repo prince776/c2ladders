@@ -15,6 +15,7 @@ interface LadderProps {
   ladderData: LadderData;
   problemStatusMap: ProblemStatusMap;
   setUserStats: (stats: UserStats) => void;
+  tagStatus: boolean
 }
 
 function Ladder(props: LadderProps) {
@@ -76,6 +77,9 @@ function Ladder(props: LadderProps) {
           <tr>
             <th>Index</th>
             <th>Problem</th>
+            {props.tagStatus &&
+              <th>Tags</th>
+            }
             <th>Frequency</th>
             <th>Rating</th>
             <th>Status</th>
@@ -85,7 +89,7 @@ function Ladder(props: LadderProps) {
           {problems.map((problem, idx) => {
             const status = problem.status;
             return (
-              <TableRow key={idx} data={problem} status={status} index={idx} />
+              <TableRow key={idx} data={problem} status={status} index={idx} tagStatus={props.tagStatus} />
             );
           })}
         </tbody>
