@@ -62,7 +62,7 @@
 
 .table-head tr {
   display: grid;
-  grid-template-columns: 1fr 4fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 4fr 4fr 1fr 1fr 1fr;
   padding: 15px 10px;
 }
 
@@ -76,7 +76,7 @@
 
 .table-row {
   display: grid;
-  grid-template-columns: 1fr 4fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 4fr 4fr 1fr 1fr 1fr;
   border-radius: 15px;
   padding: 15px 10px;
   /* background-color: aqua; */
@@ -104,7 +104,7 @@
 
 .top-row {
   display: grid;
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: 8fr 2fr 1fr;
   /* padding: 0; */
   margin-bottom: 20px;
 }
