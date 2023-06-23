@@ -55,10 +55,10 @@ function LadderSelector(props: LadderSelectorProps) {
 
 
   let a =
-    "text-white hover:bg-gray-900 font-medium rounded-lg text-sm px-5 py-2.5 mr-2";
+    "text-white hover:bg-gray-900 font-medium rounded-lg text-sm md:text-lg px-2 py-1 md:px-5 md:py-2.5 mr-2";
 
   let b =
-    "bg-color-dark outline-none ring-1 ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2";
+    "bg-color-dark outline-none ring-1 ring-gray-300 font-medium rounded-lg text-sm md:text-xl px-2 py-1 md:px-5 md:py-2.5 mr-2";
 
   const handleSubmit = (option: number[]) => {
     props.setLadderData({
@@ -69,9 +69,9 @@ function LadderSelector(props: LadderSelectorProps) {
   };
 
   return (
-    <div>
+    <div className="flex flex-wrap md:flex-nowrap">
       <button
-        className="text-white hover:bg-gray-900 font-medium rounded-lg text-sm px-5 py-2.5 mr-2"
+        className="text-white hover:bg-gray-900 font-medium rounded-lg text-sm md:text-lg px-2 py-1 mr-2"
         onClick={prevOption}
       >
         Prev
@@ -80,7 +80,7 @@ function LadderSelector(props: LadderSelectorProps) {
       {currOptions.map((option) => {
         return (
           <button
-            className={props.selected == option[0] ? b : a}
+            className={props.selected === option[0] ? b : a}
             style={{
               color: cfQuesColor[option[0]],
             }}
@@ -94,7 +94,7 @@ function LadderSelector(props: LadderSelectorProps) {
       })}
 
       <button
-        className="text-white hover:bg-gray-900 font-medium rounded-lg text-sm px-5 py-2.5 mr-2"
+        className="text-white hover:bg-gray-900 font-medium rounded-lg text-sm md:text-lg px-5 py-2.5 mr-2"
         onClick={nextOption}
       >
         Next

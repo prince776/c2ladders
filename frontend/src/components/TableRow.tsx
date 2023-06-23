@@ -12,9 +12,9 @@ const TableRow = (props: { data: Problem; status: string; index: number; tagStat
 
   return (
     <tr
-      className={`bg-color table-row ${status == "AC"
+      className={`bg-color table-row ${status === "AC"
         ? "bg-green"
-        : status == "TLE" || status == "WA" || status == "RE"
+        : status === "TLE" || status === "WA" || status === "RE"
           ? "bg-red"
           : ""
         }`}
@@ -39,7 +39,7 @@ const TableRow = (props: { data: Problem; status: string; index: number; tagStat
       <td>{data.rating}</td>
       <td
         className={
-          status == "AC" || status == "TLE" || status == "WA" || status == "RE"
+          status === "AC" || status === "TLE" || status === "WA" || status === "RE"
             ? status === "AC"
               ? "bg-color-green"
               : "text-red-400"

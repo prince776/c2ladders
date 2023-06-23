@@ -73,7 +73,7 @@ function Ladder(props: LadderProps) {
   return (
     <div className="w-full problem-table text-center">
       <table className="entire-table w-full text-gray-100 text-center border-separate border-spacing-y-2.5">
-        <thead className="table-head">
+        <thead className="table-head text-sm md:text-lg">
           <tr>
             <th>Index</th>
             <th>Problem</th>
@@ -85,7 +85,7 @@ function Ladder(props: LadderProps) {
             <th>Status</th>
           </tr>
         </thead>
-        <tbody className="table-body">
+        <tbody className="table-body text-sm md:text-lg">
           {problems.map((problem, idx) => {
             const status = problem.status;
             return (

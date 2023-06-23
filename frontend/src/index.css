@@ -67,6 +67,7 @@
 }
 
 .table-body {
+  text-align: start;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -103,8 +104,9 @@
 }
 
 .top-row {
-  display: grid;
-  grid-template-columns: 8fr 2fr 1fr;
+  /* display: flex; */
+  /* flex-direction: column-reverse; */
+  /* grid-template-columns: 8fr 2fr 1fr; */
   /* padding: 0; */
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 }
