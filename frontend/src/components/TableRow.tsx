@@ -35,7 +35,10 @@ const TableRow = (props: { data: Problem; status: string; index: number; tagStat
         })}
         </td>
       }
-      <td>{data.frequency}</td>
+      {
+        !tagStatus &&
+        <td>{data.frequency}</td>
+      }
       <td>{data.rating}</td>
       <td
         className={

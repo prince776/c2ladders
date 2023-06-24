@@ -20,7 +20,7 @@ interface LadderSelectorProps {
  */
 function LadderSelector(props: LadderSelectorProps) {
 
-  let showRating = props.showRating || 11;
+  let showRating = props.showRating || 10;
   let options: number[][] = [];
   for (let i = props.startRating; i <= props.endRating; i += props.step) {
     let st = i - props.step,
@@ -55,7 +55,7 @@ function LadderSelector(props: LadderSelectorProps) {
 
 
   let a =
-    "text-white hover:bg-gray-900 font-medium rounded-lg text-sm md:text-lg px-2 py-1 md:px-5 md:py-2.5 mr-2";
+    "text-white hover:bg-gray-900 font-medium rounded-lg text-sm md:text-lg px-2 py-1 md:px-5 md:py-2.5 mr-2 mb-1";
 
   let b =
     "bg-color-dark outline-none ring-1 ring-gray-300 font-medium rounded-lg text-sm md:text-xl px-2 py-1 md:px-5 md:py-2.5 mr-2";
@@ -69,9 +69,9 @@ function LadderSelector(props: LadderSelectorProps) {
   };
 
   return (
-    <div className="flex flex-wrap md:flex-nowrap">
+    <div className="flex flex-wrap mb-1">
       <button
-        className="text-white hover:bg-gray-900 font-medium rounded-lg text-sm md:text-lg px-2 py-1 mr-2"
+        className="text-white hover:bg-gray-900 font-medium rounded-lg text-sm md:text-lg px-2 md:px-5 py-2.5 mr-2"
         onClick={prevOption}
       >
         Prev
@@ -94,7 +94,7 @@ function LadderSelector(props: LadderSelectorProps) {
       })}
 
       <button
-        className="text-white hover:bg-gray-900 font-medium rounded-lg text-sm md:text-lg px-5 py-2.5 mr-2"
+        className="text-white hover:bg-gray-900 font-medium rounded-lg text-sm md:text-lg px-2 md:px-5 py-2.5 mr-2"
         onClick={nextOption}
       >
         Next
