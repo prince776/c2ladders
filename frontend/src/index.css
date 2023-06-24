@@ -62,12 +62,12 @@
 
 .table-head tr {
   display: grid;
-  grid-template-columns: 1fr 4fr 4fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 4fr 4fr 1fr 1fr;
   padding: 15px 10px;
 }
 
 .table-body {
-  text-align: start;
+  /* text-align: start; */
   position: relative;
   display: flex;
   flex-direction: column;
@@ -77,7 +77,7 @@
 
 .table-row {
   display: grid;
-  grid-template-columns: 1fr 4fr 4fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 4fr 4fr 1fr 1fr;
   border-radius: 15px;
   padding: 15px 10px;
   /* background-color: aqua; */
