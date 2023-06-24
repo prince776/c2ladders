@@ -1,5 +1,5 @@
 {
-  "name": "c2ladders",
+  "name": "ACDladders",
   "version": "1.0.0",
   "description": "Recreation of the famous A2OJ Ladders with updated data from codeforces website.",
   "main": "index.js",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/prince776/c2ladders.git"
+    "url": "git+https://github.com/i-pranav/ACDLadders.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/prince776/c2ladders/issues"
+    "url": "https://github.com/i-pranav/ACDLadders/issues"
   },
-  "homepage": "https://github.com/prince776/c2ladders#readme",
+  "homepage": "https://github.com/i-pranav/ACDLadders#readme",
   "dependencies": {
     "debug": "^4.3.3",
     "http": "^0.0.1-security"

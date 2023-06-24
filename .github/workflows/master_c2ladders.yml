@@ -51,7 +51,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'c2ladders'
+          app-name: 'ACDLadders'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_52A232D75DBD482DBC83B986D2EF4782 }}
           package: .
