@@ -181,7 +181,7 @@ function App() {
         />
       </div>
       <div className="w-full bg-[#151834] text-center text-gray-200 p-2">
-        <p className="mb-2 text-base">Join our Discord channel for engaging discussions on Competitive Programming (CP), Data Structures and Algorithms (DSA), and Placement opportunities!</p>
+        <p className="mb-2 text-base">Join our Discord Server and be a part of an evergrowing community full of hustling & talented individuals discussing Competitive programming, DSA and Development! (This is free and would always be!)</p>
 
         <a href="https://discord.gg/Pk3F2CW76p" target="_blank" className="relative inline-flex items-center justify-start py-3 pl-4 pr-12 overflow-hidden font-semibold text-orange-600 transition-all duration-150 ease-in-out rounded hover:pl-10 hover:pr-6 bg-[#151834] group">
           <span className="absolute bottom-0 left-0 w-full h-1 transition-all duration-150 ease-in-out bg-[#2b2c3e] group-hover:h-full"></span>
