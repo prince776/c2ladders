@@ -55,7 +55,7 @@ function App() {
 
 	
 	if(storedUser !== ''){//if the user data was stored previously load the user data
-		laadUser();
+		loadUser();
 	}
 	
 	
