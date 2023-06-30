@@ -13,8 +13,10 @@ import { assignNewStatus, fetchUserSubmissionsWithRetry, getProblemID } from './
 
 function App() {
 	
-	let storedUser = JSON.parse(localStorage.getItem('userKey') || '');//retrieving the user data from the local storage
-	
+	let storedUser = localStorage.getItem('userKey') || '';//retrieving the user data from the local storage
+	if(storedUser != ''){
+		storedUser = JSON.parse(localStorage.getItem('userKey')||'');
+	}
 	const [user, setUser] = useState<string>(storedUser);//using the stored value of user
 	const [userErr, setUserErr] = useState<string>('');
 	const [userData, setUserData] = useState<UserData>(null);
