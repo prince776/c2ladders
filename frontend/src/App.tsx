@@ -14,7 +14,7 @@ import { assignNewStatus, fetchUserSubmissionsWithRetry, getProblemID } from './
 function App() {
 	
 	let storedUser = localStorage.getItem('userKey') || '';//retrieving the user data from the local storage
-	if(storedUser != ''){
+	if(storedUser !== ''){
 		storedUser = JSON.parse(localStorage.getItem('userKey')||'');
 	}
 	const [user, setUser] = useState<string>(storedUser);//using the stored value of user
