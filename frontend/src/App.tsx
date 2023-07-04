@@ -12,12 +12,8 @@ import LadderSelector from './components/LadderSelector';
 import { assignNewStatus, fetchUserSubmissionsWithRetry, getProblemID } from './utils/utils';
 
 function App() {
-	
-	let storedUser = localStorage.getItem('userKey') || '';//retrieving the user data from the local storage
-	if(storedUser != ''){
-		storedUser = JSON.parse(localStorage.getItem('userKey')||'');
-	}
-	const [user, setUser] = useState<string>(storedUser);//using the stored value of user
+
+	const [user, setUser] = useState<string>('');
 	const [userErr, setUserErr] = useState<string>('');
 	const [userData, setUserData] = useState<UserData>(null);
 	const [userStats, setUserStats] = useState<UserStats>(null);
@@ -25,12 +21,6 @@ function App() {
 	const [problemStatusMap, setProblemStatusMap] = useState<ProblemStatusMap>({});
 	const [fetchIntervalID, setfetchIntervalID] = useState<NodeJS.Timer | null>(null);
 
-	
-	useEffect(() => {//this useEffect updates the username stored in the local storage as the state of user is changed
-	    localStorage.setItem('userKey', JSON.stringify(user));
-	}, [user]);
-	
-	
 	const loadUser = async () => {
 		try {
 			const userDataRes = await httpClient.request({
@@ -55,12 +45,6 @@ function App() {
 		}
 	}
 
-	
-	if(storedUser !== ''){//if the user data was stored previously load the user data
-		loadUser();
-	}
-	
-	
 	const updateProblemStatusMap = async (userData: UserData) => {
 		let newMap = {} as ProblemStatusMap;
 		const submissions = await fetchUserSubmissionsWithRetry(userData, 3);
