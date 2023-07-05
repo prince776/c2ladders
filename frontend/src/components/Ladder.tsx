@@ -16,6 +16,8 @@ interface LadderProps {
   problemStatusMap: ProblemStatusMap;
   setUserStats: (stats: UserStats) => void;
   tagStatus: boolean
+  loaderStatus: boolean;
+  setloaderStatus: (data: boolean) => void;
 }
 
 function Ladder(props: LadderProps) {
@@ -60,6 +62,7 @@ function Ladder(props: LadderProps) {
         return { ...element, status: ProblemStatus.NONE };
       });
       updateProblemsWithStatus(res);
+      props.setloaderStatus(false);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.ladderData]);

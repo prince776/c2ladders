@@ -11,6 +11,9 @@ interface LadderSelectorProps {
   showRating: number;
   selected: number;
   setSelected: (data: number) => void;
+  loaderStatus: boolean;
+  setloaderStatus: (data: boolean) => void;
+
 }
 
 /**
@@ -66,6 +69,7 @@ function LadderSelector(props: LadderSelectorProps) {
       endRating: option[1],
     });
     props.setSelected(option[0]);
+    props.setloaderStatus(true);
   };
 
   return (
