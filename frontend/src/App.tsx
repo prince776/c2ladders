@@ -23,6 +23,7 @@ import Footer from "./components/Footer";
 
 import { toast } from "react-toastify";
 import SocialBar from "./components/SocialBar";
+import { start } from "repl";
 
 function App() {
   const [user, setUser] = useState<string>("");
@@ -42,6 +43,8 @@ function App() {
   const [selected, setSelected] = useState(1200);
 
   const [tag, setTag] = useState(false);
+
+  const [loaderStatus, setloaderStatus] = useState(false)
 
   const loadUser = async () => {
     try {
@@ -69,6 +72,9 @@ function App() {
         endRating: startR + 100,
       });
 
+      localStorage.clear()
+      localStorage.setItem('userInformation', JSON.stringify(userInfo));
+
       setSelected(startR);
       toast.success("CF Handle found 😊");
     } catch (err: any) {
@@ -77,6 +83,7 @@ function App() {
   };
 
   const updateProblemStatusMap = async (userData: UserData) => {
+
     let newMap = {} as ProblemStatusMap;
     const submissions = await fetchUserSubmissionsWithRetry(userData, 3);
     for (const submission of submissions) {
@@ -86,6 +93,30 @@ function App() {
     }
     setProblemStatusMap(newMap);
   };
+
+
+
+  useEffect(() => {
+    const items = localStorage.getItem('userInformation');
+    if (items) {
+      const userInfo = JSON.parse(items);
+      setUser(userInfo.handle)
+      setUserData({
+        handle: userInfo.handle,
+        image: userInfo.avatar,
+        maxRating: userInfo.maxRating,
+        rating: userInfo.rating,
+        rank: userInfo.rank,
+      });
+      const startR = Math.floor(userInfo.rating / 100) * 100 + 200;
+      setLadderData({
+        startRating: startR,
+        endRating: startR + 100,
+      });
+    }
+
+  }, []);
+
 
   useEffect(() => {
     if (!userData) return;
@@ -116,6 +147,8 @@ function App() {
             ladderData={ladderData}
             selected={selected}
             setSelected={setSelected}
+            loaderStatus={loaderStatus}
+            setloaderStatus={setloaderStatus}
           />
 
           <div className="w-full md:w-3/5 flex flex-row justify-between py-2 md:px-10 md:justify-center">
@@ -169,14 +202,18 @@ function App() {
         </div>
 
         <UserCard userData={userData} userStats={userStats} />
-
         <Ladder
           ladderData={ladderData}
           problemStatusMap={problemStatusMap}
           setUserStats={setUserStats}
           tagStatus={tag}
+          loaderStatus={loaderStatus}
+          setloaderStatus={setloaderStatus}
         />
       </div>
+
+      {loaderStatus && <div className="loader"></div>}
+
       <div className="w-full bg-[#151834] text-center text-gray-200 p-2">
         <p className="mt-5 mb-2 text-base">
           <i>
