@@ -57,12 +57,15 @@ const Footer: React.FC = () => {
           linkedIn="https://www.linkedin.com/in/shubham-pandey-430365233/"
         />
         <FooterCard
-          name="Himanshu Raj"
-          image="./assets/profile/default.png"
-          linkedIn="#"
+          name="OM"
+          imgStyle={{
+            objectFit: "cover",
+          }}
+          image="./assets/profile/om.jpg"
+          linkedIn="https://www.linkedin.com/in/om-gupta-1219b2223/"
         />
         <FooterCard
-          name="OM"
+          name="Himanshu Raj"
           image="./assets/profile/default.png"
           linkedIn="#"
         />
