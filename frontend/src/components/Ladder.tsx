@@ -23,7 +23,6 @@ interface LadderProps {
 function Ladder(props: LadderProps) {
   const data = props.ladderData;
   const [problems, setProblems] = useState<Problem[]>([]);
-
   const fetchProblems = async () => {
     const res = await httpClient.request({
       method: "GET",
@@ -57,6 +56,7 @@ function Ladder(props: LadderProps) {
   };
 
   useEffect(() => {
+    props.setloaderStatus(true);
     fetchProblems().then((res) => {
       res = res.map((element: any) => {
         return { ...element, status: ProblemStatus.NONE };
@@ -68,7 +68,9 @@ function Ladder(props: LadderProps) {
   }, [props.ladderData]);
 
   useEffect(() => {
+    props.setloaderStatus(true);
     updateProblemsWithStatus(problems);
+    props.setloaderStatus(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.problemStatusMap]);
 
@@ -101,6 +103,7 @@ function Ladder(props: LadderProps) {
       </table>
     </div>
   );
+
 }
 
 export default Ladder;

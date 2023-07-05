@@ -7,7 +7,7 @@ import {
   UserStats,
 } from "./utils/types";
 import httpClient from "./utils/http";
-import { constants } from "./utils/constants";
+import { constants, index } from "./utils/constants";
 
 import UserCard from "./components/UserCard";
 import Header from "./components/Header";
@@ -23,7 +23,6 @@ import Footer from "./components/Footer";
 
 import { toast } from "react-toastify";
 import SocialBar from "./components/SocialBar";
-import { start } from "repl";
 
 function App() {
   const [user, setUser] = useState<string>("");
@@ -44,9 +43,15 @@ function App() {
 
   const [tag, setTag] = useState(false);
 
-  const [loaderStatus, setloaderStatus] = useState(false)
+  const [loaderStatus, setloaderStatus] = useState(true)
+
+  const [showRating, setShowRating] = useState(10);
+
+  const [start, setStart] = useState(0);
+  const [end, setEnd] = useState(10);
 
   const loadUser = async () => {
+    setloaderStatus(true);
     try {
       const userDataRes = await httpClient.request({
         method: "GET",
@@ -72,6 +77,7 @@ function App() {
         endRating: startR + 100,
       });
 
+
       localStorage.clear()
       localStorage.setItem('userInformation', JSON.stringify(userInfo));
 
@@ -80,23 +86,26 @@ function App() {
     } catch (err: any) {
       toast.error("CF Handle not Found Try again");
     }
+    setloaderStatus(false);
   };
 
   const updateProblemStatusMap = async (userData: UserData) => {
-
+    setloaderStatus(true);
     let newMap = {} as ProblemStatusMap;
-    const submissions = await fetchUserSubmissionsWithRetry(userData, 3);
+    const submissions = await fetchUserSubmissionsWithRetry(userData, 3, loaderStatus, setloaderStatus);
     for (const submission of submissions) {
       const problem = { ...submission.problem };
       const id = getProblemID(problem);
       newMap[id] = assignNewStatus(newMap[id], submission.verdict);
     }
     setProblemStatusMap(newMap);
+    setloaderStatus(false);
   };
 
 
 
   useEffect(() => {
+    setloaderStatus(true);
     const items = localStorage.getItem('userInformation');
     if (items) {
       const userInfo = JSON.parse(items);
@@ -113,12 +122,14 @@ function App() {
         startRating: startR,
         endRating: startR + 100,
       });
+      setSelected(startR);
     }
-
+    setloaderStatus(false)
   }, []);
 
 
   useEffect(() => {
+    setloaderStatus(true);
     if (!userData) return;
     setProblemStatusMap({});
     if (fetchIntervalID) {
@@ -131,6 +142,7 @@ function App() {
     );
     setfetchIntervalID(newFetchIntervalID);
     // eslint-disable-next-line react-hooks/exhaustive-deps
+    setloaderStatus(false);
   }, [userData]);
 
   return (
@@ -139,7 +151,7 @@ function App() {
       <div className="w-full p-3 md:p-10">
         <div className="w-full top-row flex flex-col-reverse justify-between md:flex-row sticky top-0 z-10 bg-[#2b2c3e] pt-2">
           <LadderSelector
-            showRating={10}
+            showRating={showRating}
             startRating={900}
             endRating={3600}
             step={100}
@@ -149,6 +161,11 @@ function App() {
             setSelected={setSelected}
             loaderStatus={loaderStatus}
             setloaderStatus={setloaderStatus}
+            start={start}
+            setStart={setStart}
+            end={end}
+            setEnd={setEnd}
+
           />
 
           <div className="w-full md:w-3/5 flex flex-row justify-between py-2 md:px-10 md:justify-center">

@@ -26,14 +26,18 @@ export const getProblemLink = (problem: Problem): string => {
 	return `https://codeforces.com/problemset/problem/${problem.contestId}/${problem.index}`;
 }
 
-export const fetchUserSubmissionsWithRetry = async (user: UserData, retries: number): Promise<any[]> => {
+export const fetchUserSubmissionsWithRetry = async (user: UserData, retries: number, loaderStatus: boolean,
+	setloaderStatus: (data: boolean) => void): Promise<any[]> => {
+	setloaderStatus(true);
 	try {
-		const res =  await fetchUserSubmissions(user);
+		const res = await fetchUserSubmissions(user);
+		setloaderStatus(false);
 		return res;
 	} catch (err) {
 		if (retries > 0) {
-			return await fetchUserSubmissionsWithRetry(user, retries - 1);
+			return await fetchUserSubmissionsWithRetry(user, retries - 1, loaderStatus, setloaderStatus);
 		}
+		setloaderStatus(false);
 		throw err;
 	}
 }

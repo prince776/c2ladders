@@ -13,7 +13,10 @@ interface LadderSelectorProps {
   setSelected: (data: number) => void;
   loaderStatus: boolean;
   setloaderStatus: (data: boolean) => void;
-
+  start: number;
+  setStart: (data: number) => void;
+  end: number;
+  setEnd: (data: number) => void;
 }
 
 /**
@@ -31,28 +34,26 @@ function LadderSelector(props: LadderSelectorProps) {
     options.push([st, ed]);
   }
 
-  const [start, setStart] = useState(0);
-  const [end, setEnd] = useState(Math.min(showRating, options.length));
 
   const [currOptions, setCurrOptions] = useState(options);
 
   const nextOption = () => {
-    let newEnd = Math.min(end + showRating, options.length);
-    setEnd(newEnd);
-    setStart(newEnd - showRating);
+    let newEnd = Math.min(props.end + showRating, options.length);
+    props.setEnd(newEnd);
+    props.setStart(newEnd - showRating);
     setCurrOptions(options.slice(newEnd - showRating, newEnd));
   };
 
   const prevOption = () => {
-    let newStart = Math.max(start - showRating, 0);
-    setStart(newStart);
-    setEnd(newStart + showRating);
+    let newStart = Math.max(props.start - showRating, 0);
+    props.setStart(newStart);
+    props.setEnd(newStart + showRating);
     setCurrOptions(options.slice(newStart, newStart + showRating));
   };
 
   useEffect(() => {
 
-    setCurrOptions(options.slice(start, end));
+    setCurrOptions(options.slice(props.start, props.end));
   }, []);
 
 
