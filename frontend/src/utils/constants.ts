@@ -1,9 +1,11 @@
 import { ProblemStatus } from "./types";
 
-const baseURL =
-  process.env.BASE_URL !== undefined
-    ? process.env.BASE_URL
-    : "http://localhost:8080";
+// const baseURL =
+//   process.env.BASE_URL !== undefined
+//     ? process.env.BASE_URL
+//     : "http://localhost:8080";
+
+const baseURL = "https://c2-ladders-juol.onrender.com";
 
 export const constants = {
   cfAPI: "https://codeforces.com/api",

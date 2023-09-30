@@ -3,7 +3,7 @@
 C2Ladders is rating wise list of Codeforces problems which were solved by many people who have had stable rating increase.
 It's a reconstruction of old a2oj Ladders with new and updated problemset.
 
-It's live at: https://c2-ladders.com/
+It's live at: https://c2-ladders-juol.onrender.com
 
 Script for creation of ladders is available here: https://github.com/prince776/scripts-yt/tree/master/ladder
 
