@@ -212,7 +212,7 @@ function App() {
                 onChange={(e) => setTag(e.target.checked)}
               />
               <label className="inline pl-[0.15rem] hover:cursor-pointer text-gray-200 text-lg mr-1">
-                {tag ? "Freq" : "Tags"}
+                {tag ? "Score" : "Tags"}
               </label>
             </div>
           </div>

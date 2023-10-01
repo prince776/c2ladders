@@ -86,7 +86,7 @@ function Ladder(props: LadderProps) {
               <th>Tags</th>
             }
             {!props.tagStatus &&
-              <th>Frequency</th>
+              <th>Score</th>
             }
             <th>Rating</th>
             <th>Status</th>
