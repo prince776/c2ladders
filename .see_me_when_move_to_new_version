@@ -1,0 +1,16 @@
+for frontend
+
+1. build the frontend
+2. copy that build file and paste it in backend/src
+3. rename the folder to build\_{version_number}, like build_v3
+4. in build folder rename the index.html to index\_{version_number} like index_v3.html
+5. make a new folder in build folder and name it {version_number} like v3
+6. move the assets folder inside the version folder, like build/v3/assets
+
+for backend
+
+1. make a new folder inside the routes name it version number like v3
+2. copy paste the api folder from pre existing versions
+3. make changes, and build the backend, also make sure to change the path to newly generated problem set
+4. paste the newly generated json inside the data folder and name it problems\_{version_number} like problems_v3.json
+5. run and test and deploy
