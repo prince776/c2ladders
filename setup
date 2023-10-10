@@ -1,0 +1,11 @@
+sudo docker network create acd-ladder
+sudo docker pull shubhamjr/acd-ladder
+sudo docker pull shubhamjr/acd-ladder-nginx
+sudo docker run -d -p 80:80 --name nginx --network ACD shubhamjr/acd-ladder-nginx
+sudo docker run -d --name acd-app --hostname acd-app --network ACD shubhamjr/acd-ladder
+# sudo docker run -d -p 80:8080 --hostname acd-app --network acd-ladder shubhamjr/acd-ladder
+
+c267c2d8ade5 [backup]
+b4e22bc78ac6 [backup]
+
+docker exec <container-id> nginx -s reload [ ZERO DOWNTIME ]

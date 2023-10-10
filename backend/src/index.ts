@@ -24,14 +24,22 @@ app.get("/health", (req: Request, res: Response) => {
   res.send("ACDLadders backend working...");
 });
 
-app.use("/", require("./routes/router"));
+app.use("/api/v1", require("./routes/v1/router"));
+app.use("/api/v2", require("./routes/v2/router"));
 
 if (process.env.NODE_ENV === "production") {
   console.log("env is prod");
-  app.use(express.static(path.join(__dirname, "build")));
+
+  app.use(express.static(path.join(__dirname, "build_v1")));
+  app.use(express.static(path.join(__dirname, "build_v2")));
+
   app.get("/", (req, res) => {
     console.log("req: ", req.url);
-    res.sendFile(path.resolve(__dirname, "build", "index.html"));
+    res.sendFile(path.resolve(__dirname, "build_v2", "index_v2.html"));
+  });
+  app.get("/v1", (req, res) => {
+    console.log("req: ", req.url);
+    res.sendFile(path.resolve(__dirname, "build_v1", "index_v1.html"));
   });
 }
 

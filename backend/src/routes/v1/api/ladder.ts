@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
-import cache from "../../utils/cache";
-import { ProblemType } from "../../utils/types";
-import { sendSuccess, sendError } from "../../utils/utils";
+import cache from "../../../utils/cache";
+import { ProblemType } from "../../../utils/types";
+import { sendSuccess, sendError } from "../../../utils/utils";
 import * as fs from "fs";
 import path from "path";
 
@@ -10,7 +10,7 @@ const router = express.Router();
 const ladderLimit = 100;
 const fetchLadderLimit = 120;
 
-const absolutePath = path.resolve(__dirname, "../../../problems.json");
+const absolutePath = path.resolve(__dirname, "../../../data/problems_v1.json");
 
 const jsonData = fs.readFileSync(absolutePath, "utf8");
 const problems = JSON.parse(jsonData) as ProblemType[];
@@ -25,6 +25,7 @@ const isEligibleForCache = (startRating: string, endRating: string) => {
 };
 
 router.get("/ladder", (req: Request, res: Response) => {
+  console.log("v1");
   const { startRating, endRating } = req.query;
 
   if (!startRating || !endRating) {
@@ -54,7 +55,7 @@ router.get("/ladder", (req: Request, res: Response) => {
   );
 
   if (useCache) {
-    const cacheKey = `ladder:${startRating}:${endRating}`;
+    const cacheKey = `v1:ladder:${startRating}:${endRating}`;
     const result = cache.get(cacheKey);
     if (result) {
       return sendSuccess(res, "Ladder fetched", result);
@@ -98,7 +99,7 @@ router.get("/ladder", (req: Request, res: Response) => {
 
   sendSuccess(res, "Ladder fetched", finalRes);
   if (useCache) {
-    const cacheKey = `ladder:${startRating}:${endRating}`;
+    const cacheKey = `v1:ladder:${startRating}:${endRating}`;
     cache.set(cacheKey, finalRes);
   }
 });

@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
 import "./footer.css";
 import FooterCard from "./FooterCard";
+import { constants } from "../utils/constants";
 
 const Footer: React.FC = () => {
   const [counter, setCounter] = useState(0);
 
   const getData = async () => {
-    const response = await fetch("https://acodedaily.com/api/analysis");
+    const response = await fetch(`${constants.api}/analysis`);
     if (response.status == 200) {
       const data = await response.json();
       // console.log(typeof data.data[0].hits);
-      setCounter(data.data[0].hits);
+      setCounter(data.data.hits);
     }
   };
 

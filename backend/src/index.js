@@ -22,13 +22,19 @@ app.use((0, cors_1.default)());
 app.get("/health", (req, res) => {
     res.send("ACDLadders backend working...");
 });
-app.use("/", require("./routes/router"));
+app.use("/api/v1", require("./routes/v1/router"));
+app.use("/api/v2", require("./routes/v2/router"));
 if (process.env.NODE_ENV === "production") {
     console.log("env is prod");
-    app.use(express_1.default.static(path_1.default.join(__dirname, "build")));
+    app.use(express_1.default.static(path_1.default.join(__dirname, "build_v1")));
+    app.use(express_1.default.static(path_1.default.join(__dirname, "build_v2")));
     app.get("/", (req, res) => {
         console.log("req: ", req.url);
-        res.sendFile(path_1.default.resolve(__dirname, "build", "index.html"));
+        res.sendFile(path_1.default.resolve(__dirname, "build_v2", "index_v2.html"));
+    });
+    app.get("/v1", (req, res) => {
+        console.log("req: ", req.url);
+        res.sendFile(path_1.default.resolve(__dirname, "build_v1", "index_v1.html"));
     });
 }
 app.listen(port, () => {

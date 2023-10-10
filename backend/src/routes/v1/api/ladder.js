@@ -22,14 +22,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 const express_1 = __importDefault(require("express"));
-const cache_1 = __importDefault(require("../../utils/cache"));
-const utils_1 = require("../../utils/utils");
+const cache_1 = __importDefault(require("../../../utils/cache"));
+const utils_1 = require("../../../utils/utils");
 const fs = __importStar(require("fs"));
 const path_1 = __importDefault(require("path"));
 const router = express_1.default.Router();
 const ladderLimit = 100;
 const fetchLadderLimit = 120;
-const absolutePath = path_1.default.resolve(__dirname, "../../../problems.json");
+const absolutePath = path_1.default.resolve(__dirname, "../../../data/problems_v1.json");
 const jsonData = fs.readFileSync(absolutePath, "utf8");
 const problems = JSON.parse(jsonData);
 const isEligibleForCache = (startRating, endRating) => {
@@ -41,6 +41,7 @@ const isEligibleForCache = (startRating, endRating) => {
     return false;
 };
 router.get("/ladder", (req, res) => {
+    console.log("v1");
     const { startRating, endRating } = req.query;
     if (!startRating || !endRating) {
         return (0, utils_1.sendError)(res, "Missing startRating or endRating", "Missing startRating or endRating", 400);
@@ -51,7 +52,7 @@ router.get("/ladder", (req, res) => {
     }
     const useCache = isEligibleForCache(startRating, endRating);
     if (useCache) {
-        const cacheKey = `ladder:${startRating}:${endRating}`;
+        const cacheKey = `v1:ladder:${startRating}:${endRating}`;
         const result = cache_1.default.get(cacheKey);
         if (result) {
             return (0, utils_1.sendSuccess)(res, "Ladder fetched", result);
@@ -84,7 +85,7 @@ router.get("/ladder", (req, res) => {
     }
     (0, utils_1.sendSuccess)(res, "Ladder fetched", finalRes);
     if (useCache) {
-        const cacheKey = `ladder:${startRating}:${endRating}`;
+        const cacheKey = `v1:ladder:${startRating}:${endRating}`;
         cache_1.default.set(cacheKey, finalRes);
     }
 });

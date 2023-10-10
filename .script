@@ -1,0 +1,3 @@
+ssh -i acd.pem azureuser@40.76.29.81 scp -i acd.pem
+azureuser@40.76.29.81:/home/azureuser/app2.log . // new ssh -i acd.pem
+pranav@52.255.156.61 backup container 2f75ad87e7b1
