@@ -18,11 +18,13 @@ interface LadderProps {
   tagStatus: boolean
   loaderStatus: boolean;
   setloaderStatus: (data: boolean) => void;
+  filters: Array<String>;
 }
 
 function Ladder(props: LadderProps) {
   const data = props.ladderData;
   const [problems, setProblems] = useState<Problem[]>([]);
+
   const fetchProblems = async () => {
     const res = await httpClient.request({
       method: "GET",
@@ -34,6 +36,8 @@ function Ladder(props: LadderProps) {
     });
     return res.data;
   };
+
+
 
   const updateProblemsWithStatus = (problems: Problem[]) => {
     let solvedCount = 0;
@@ -61,11 +65,21 @@ function Ladder(props: LadderProps) {
       res = res.map((element: any) => {
         return { ...element, status: ProblemStatus.NONE };
       });
+
+      // filtering start
+      if (props.filters.length > 0) {
+
+        res = res.filter((problem: any) =>
+          problem.tags.some((tag: string) => props.filters.includes(tag))
+        );
+      }
+      // filtering end
+
       updateProblemsWithStatus(res);
       props.setloaderStatus(false);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.ladderData]);
+  }, [props.ladderData, props.filters]);
 
   useEffect(() => {
     props.setloaderStatus(true);
