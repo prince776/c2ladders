@@ -18,7 +18,8 @@ interface LadderProps {
   tagStatus: boolean
   loaderStatus: boolean;
   setloaderStatus: (data: boolean) => void;
-  filters: Array<String>;
+  filters: Array<string>;
+  filterType: boolean
 }
 
 function Ladder(props: LadderProps) {
@@ -67,19 +68,27 @@ function Ladder(props: LadderProps) {
       });
 
       // filtering start
-      if (props.filters.length > 0) {
+      if (props.filters.length > 0 && !props.filterType) {
 
         res = res.filter((problem: any) =>
           problem.tags.some((tag: string) => props.filters.includes(tag))
         );
       }
+
+      else if (props.filters.length > 0 && props.filterType) {
+
+        res = res.filter((problem: any) =>
+          props.filters.every((tag: string) => problem.tags.includes(tag))
+        );
+      }
+
       // filtering end
 
       updateProblemsWithStatus(res);
       props.setloaderStatus(false);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.ladderData, props.filters]);
+  }, [props.ladderData, props.filters, props.filterType]);
 
   useEffect(() => {
     props.setloaderStatus(true);

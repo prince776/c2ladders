@@ -1,13 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { cfRankColor } from "../utils/constants";
 import { UserData, UserStats } from "../utils/types";
 
-function Sidebar(props: { userData: UserData; userStats: UserStats; filters: Array<string>; setFilters: (data: Array<string>) => void; }) {
-    const { userData, userStats, filters, setFilters } = props;
+function Sidebar(props: { userData: UserData; userStats: UserStats; filters: Array<string>; setFilters: (data: Array<string>) => void; filterType: boolean; setFilterType: (data: boolean) => void; }) {
+    const { userData, userStats, filters, setFilters, filterType, setFilterType } = props;
 
     const tags = ['2-sat', 'binary search', 'bitmasks', 'brute force', 'chinese remainder theorem', 'combinatorics', 'constructive algorithms', 'data structures', 'dfs and similar', 'divide and conquer', 'dp', 'dsu', 'expression parsing', 'fft', 'flows', 'games', 'geometry', 'graph matchings', 'graphs', 'greedy', 'hashing', 'implementation', 'interactive', 'math', 'matrices', 'meet-in-the-middle', 'number theory', 'probabilities', 'schedules', 'shortest paths', 'sortings', 'string suffix structures', 'strings', 'ternary search', 'trees', 'two pointers']
-
-
 
     const handleToggleText = (text: string) => {
         if (filters.includes(text)) {
@@ -21,56 +19,39 @@ function Sidebar(props: { userData: UserData; userStats: UserStats; filters: Arr
     };
 
 
+
     return (
         <div>
-            {userData &&
-                <div className="w-full max-w-[300px] p-8 rounded-xl text-gray-800 dark:text-gray-400 overflow-hidden group 
-                    hover:shadow-2xl hover:shadow-aCodeSky/50 motion-safe:transition-all motion-safe:duration-700">
 
-                    <figure className="relative w-20 h-20 m-0 mx-auto rounded-full outline outline-offset-4 outline-aCodeSky 
-                       before:content-[''] before:absolute before:block before:pointer-events-none before:rounded-full before:h-full before:w-full before:bg-aCodeSky before:-z-[1]
-                       group-hover:before:scale-[4.3] motion-safe:before:transition-all 
-                       motion-safe:transform-gpu motion-safe:before:duration-500 before:origin-center group-hover:outline-sky-400"
-                    >
-                        <img
-                            className="rounded-full block w-full h-full object-cover z-10 relative border-solid border-2 border-slate-50"
-                            src={userData.image}
-                            alt="Avatar" />
-                    </figure>
 
-                    <header className="motion-safe:translate-y-4 group-hover:translate-y-0 motion-safe:transition-transform motion-safe:transform-gpu motion-safe:duration-500" style={{
-                        color: cfRankColor[userData.rank],
-                    }}>
-                        <h3 className="font-semibold text-2xl text-center mt-6 group-hover:text-gray-50 dark:group-hover:text-gray-800 relative">{userData.handle}</h3>
-                        <p className="text-center group-hover:text-gray-50 dark:group-hover:text-gray-800 relative">{userData.rank}</p>
-                        <p className="text-center group-hover:text-gray-50 dark:group-hover:text-gray-800 relative">Rating: {userData.rating} (Max: {userData.maxRating})</p>
-                    </header>
+            <input
+                className="mr-2 mt-[0.3rem] h-3.5 w-8 appearance-none rounded-[0.4375rem] bg-neutral-300 before:pointer-events-none before:absolute before:h-3.5 before:w-3.5 before:rounded-full before:bg-transparent before:content-[''] after:absolute after:z-[2] after:-mt-[0.1875rem] after:h-5 after:w-5 after:rounded-full after:border-none after:bg-neutral-100 after:shadow-[0_0px_3px_0_rgb(0_0_0_/_7%),_0_2px_2px_0_rgb(0_0_0_/_4%)] after:transition-[background-color_0.2s,transform_0.2s] after:content-[''] checked:bg-primary checked:after:absolute checked:after:z-[2] checked:after:-mt-[3px] checked:after:ml-[1.0625rem] checked:after:h-5 checked:after:w-5 checked:after:rounded-full checked:after:border-none checked:after:bg-primary checked:after:shadow-[0_3px_1px_-2px_rgba(0,0,0,0.2),_0_2px_2px_0_rgba(0,0,0,0.14),_0_1px_5px_0_rgba(0,0,0,0.12)] checked:after:transition-[background-color_0.2s,transform_0.2s] checked:after:content-[''] hover:cursor-pointer focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[3px_-1px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] focus:after:absolute focus:after:z-[1] focus:after:block focus:after:h-5 focus:after:w-5 focus:after:rounded-full focus:after:content-[''] checked:focus:border-primary checked:focus:bg-primary checked:focus:before:ml-[1.0625rem] checked:focus:before:scale-100 checked:focus:before:shadow-[3px_-1px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:bg-neutral-600 dark:after:bg-neutral-400 dark:checked:bg-primary dark:checked:after:bg-primary dark:focus:before:shadow-[3px_-1px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:before:shadow-[3px_-1px_0px_13px_#3b71ca]"
+                type="checkbox"
+                role="switch"
+                id="flexSwitchCheckDefault"
+                onChange={(e) => setFilterType(e.target.checked)}
+            />
 
-                    <ul className="flex justify-center space-x-4 mt-16 text-aCodeSky
-                   relative">
-                        <li>
-                            {userStats && <p className="text-green-200">Solved: {userStats.solved}</p>}
-                        </li>
-                        <li>
-                            {userStats && <p className="text-red-200">Unsolved: {userStats.unsolved}</p>}
-                        </li>
+            <label className="inline pl-[0.15rem] hover:cursor-pointer text-gray-200 text-lg mr-1">
+                Filter Logic: {filterType ? "AND" : "OR"}
+            </label>
 
-                    </ul>
+            <div className="border-2 w-full rounded-3xl flex justify-between my-2">
+
+                <div className="text-sm flex flex-wrap justify-items-start m-3 content-center">{tags.map((text, idx) => {
+
+                    return (
+                        <Button
+                            key={idx}
+                            text={text}
+                            isTextInArray={filters.includes(text)}
+                            onClick={() => handleToggleText(text)}
+                        />
+                    )
+                })}
                 </div>
-            }
-            <div className="text-sm flex flex-wrap justify-center mt-3">{tags.map((text, idx) => {
 
-                return (
-                    <Button
-                        key={idx}
-                        text={text}
-                        isTextInArray={filters.includes(text)}
-                        onClick={() => handleToggleText(text)}
-                    />
-                )
-            })}
             </div>
-
         </div>
     );
 }
